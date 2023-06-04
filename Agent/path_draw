@@ -1,0 +1,22 @@
+import json
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Load the pose history from the JSON file
+with open('pose_history.json', 'r') as f:
+    pose_history = json.load(f)
+
+# Extract the x, y, and z coordinates
+x = [pose['position'][0] for pose in pose_history]
+y = [pose['position'][1] for pose in pose_history]
+z = [pose['position'][2] for pose in pose_history]
+
+# Plot the motion path in 3D
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z)
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+ax.set_title('Motion Path')
+plt.show()
